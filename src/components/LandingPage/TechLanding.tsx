@@ -62,7 +62,7 @@ const TechLanding: React.FC = () => {
             Nossos serviços
           </Typography>
           <Grid container spacing={4} mt={2}>
-            <Grid size={{ xs:12, md:4 }}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Card elevation={3}>
                 <CardContent sx={{ textAlign: 'center' }}>
                   <LaptopMacIcon fontSize="large" color="primary" />
@@ -76,7 +76,7 @@ const TechLanding: React.FC = () => {
               </Card>
             </Grid>
 
-            <Grid size={{ xs:12, md:4 }}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Card elevation={3}>
                 <CardContent sx={{ textAlign: 'center' }}>
                   <PhoneIphoneIcon fontSize="large" color="primary" />
@@ -90,7 +90,7 @@ const TechLanding: React.FC = () => {
               </Card>
             </Grid>
 
-            <Grid size={{ xs:12, md:4 }}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Card elevation={3}>
                 <CardContent sx={{ textAlign: 'center' }}>
                   <HomeRepairServiceIcon fontSize="large" color="primary" />
@@ -119,7 +119,7 @@ const TechLanding: React.FC = () => {
               'Atendimento rápido',
               'Garantia em todos os serviços',
             ].map((item, index) => (
-              <Grid size={{ xs:12, md:4 }} key={index}>
+              <Grid size={{ xs: 12, md: 4 }} key={index}>
                 <Card elevation={2}>
                   <CardContent>
                     <Typography variant="h6">{item}</Typography>

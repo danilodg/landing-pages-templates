@@ -8,46 +8,64 @@ import {
   ListItemText,
   Fab,
   Typography,
+  CssBaseline,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+
 import TechLanding from './TechLanding';
+import WebDevLanding from './webDevLanding';
+
+type PageKey = 'default' | 'tech' | 'web' | 'home';
+
+const pages: {
+  key: PageKey;
+  label: string;
+  component: React.ReactNode;
+}[] = [
+    {
+      key: 'tech',
+      label: 'Notebook & Celular',
+      component: <TechLanding />,
+    },
+    {
+      key: 'web',
+      label: 'Desenvolvimento Web',
+      component: <WebDevLanding />,
+    },
+    {
+      key: 'home',
+      label: 'Serviços Residenciais',
+      component: (
+        <Box p={4}>
+          <Typography variant="h4" align="center" mt={4}>
+            Página Serviços Residenciais (em construção)
+          </Typography>
+        </Box>
+      ),
+    },
+    {
+      key: 'default',
+      label: 'Página Padrão',
+      component: (
+        <Box p={4}>
+          <Typography variant="h4" align="center" mt={4}>
+            Página padrão (em construção)
+          </Typography>
+        </Box>
+      ),
+    },
+  ];
 
 const LandingSelector: React.FC = () => {
-  const [selectedPage, setSelectedPage] = useState<'default' | 'tech' | 'home'>('default');
+  const [selectedPage, setSelectedPage] = useState<PageKey>('default');
   const [openDialog, setOpenDialog] = useState(false);
 
-  const renderPage = () => {
-    switch (selectedPage) {
-      case 'tech':
-        return <TechLanding />;
-      case 'home':
-        return (
-          <Box p={4}>
-            <Typography variant="h4" align="center" mt={4}>
-              Página Serviços Residenciais (em construção)
-            </Typography>
-          </Box>
-        );
-      default:
-        return (
-          <Box p={4}>
-            <Typography variant="h4" align="center" mt={4}>
-              Página padrão (em construção)
-            </Typography>
-          </Box>
-        );
-    }
-  };
-
-  const handleSelectPage = (page: 'default' | 'tech' | 'home') => {
-    setSelectedPage(page);
-    setOpenDialog(false);
-  };
+  const currentPage = pages.find((page) => page.key === selectedPage);
 
   return (
     <>
       {/* Conteúdo principal */}
-      <Box sx={{ minHeight: '100vh' }}>{renderPage()}</Box>
+      <Box sx={{ minHeight: '100vh' }}>{currentPage?.component}</Box>
 
       {/* Botão flutuante para abrir o menu */}
       <Fab
@@ -68,15 +86,19 @@ const LandingSelector: React.FC = () => {
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
         <DialogTitle>Escolha a página</DialogTitle>
         <List>
-          <ListItemButton selected={selectedPage === 'default'} onClick={() => handleSelectPage('default')}>
-            <ListItemText primary="Padrão" />
-          </ListItemButton>
-          <ListItemButton selected={selectedPage === 'tech'} onClick={() => handleSelectPage('tech')}>
-            <ListItemText primary="Notebook & Celular" />
-          </ListItemButton>
-          <ListItemButton selected={selectedPage === 'home'} onClick={() => handleSelectPage('home')}>
-            <ListItemText primary="Serviços Residenciais" />
-          </ListItemButton>
+          {pages.map(({ key, label }) => (
+            <ListItemButton
+              key={key}
+              selected={selectedPage === key}
+              onClick={() => {
+                setSelectedPage(key);
+                setOpenDialog(false);
+              }}
+            >
+              <CssBaseline />
+              <ListItemText primary={label} />
+            </ListItemButton>
+          ))}
         </List>
       </Dialog>
     </>
