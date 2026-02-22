@@ -1,54 +1,170 @@
-# React + TypeScript + Vite
+# Landing Page Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, drag-and-drop style landing page builder built with React, TypeScript, and Material-UI. Create professional landing pages in minutes without any coding knowledge.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19.1-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue)
+![MUI](https://img.shields.io/badge/MUI-7.1-purple)
+![Vite](https://img.shields.io/badge/Vite-6.3-yellow)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Step-by-Step Wizard**: Build your landing page in 5 simple steps
+- **6 Business Types**: E-commerce, Services, Portfolio, Startup, Restaurant, Professional
+- **6 Visual Styles**: Modern, Classic, Minimalist, Vibrant, Corporate, Creative
+- **5 Layout Options**: Hero Centered, Hero Split, Hero Fullscreen, Grid, Sidebar
+- **8 Color Themes**: Blue, Green, Red, Purple, Orange, Teal, Pink, Indigo
+- **Dark/Light Mode**: Toggle between themes
+- **Image Upload**: Upload custom images for hero, logo, gallery, and products
+- **Live Preview**: See your landing page in real-time
+- **Responsive Design**: Works on all devices
+- **Product Modal**: Click products to see detailed view with image and description
+- **Contact Form**: Built-in contact form with form fields
+- **Animated Testimonials**: Staggered card layout for testimonials
+- **SEO Friendly**: Clean, semantic HTML structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Available Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## How It Works
+
+### Step 1: Choose Business Type
+Select the category that best describes your business:
+- 🛒 E-commerce - Online store
+- 🔧 Services - Professional services
+- 🎨 Portfolio - Creative portfolio
+- 🚀 Startup - Technology & innovation
+- 🍽️ Restaurant - Food & hospitality
+- 👔 Professional - Lawyers, doctors, consultants
+
+### Step 2: Select Visual Style
+Choose your visual personality:
+- ✨ Modern - Clean and contemporary
+- 🏛️ Classic - Timeless elegance
+- ◻️ Minimalist - Less is more
+- 🌈 Vibrant - Bold and dynamic
+- 🏢 Corporate - Professional & trustworthy
+- 💡 Creative - Unique & memorable
+
+Then pick your primary color.
+
+### Step 3: Choose Layout
+Select how content is arranged:
+- ⬛ Hero Centered - Centered content with background image
+- ⬜ Hero Split - Text on one side, image on the other
+- 📱 Hero Fullscreen - Full screen banner
+- ⊞ Grid - Product grid layout
+- 📋 Sidebar - Fixed sidebar navigation
+
+### Step 4: Add Images & Content
+Upload your own images:
+- Hero image (main banner)
+- Logo
+- Gallery images
+- Product images
+
+And customize:
+- Title
+- Subtitle
+- Description
+- CTA button text
+
+### Step 5: Preview
+See your finished landing page with:
+- About section with statistics
+- Services grid
+- Products with modal details
+- Testimonials with staggered layout
+- Gallery
+- Contact form
+- Footer
+
+## Project Structure
+
 ```
+src/
+├── components/
+│   └── LandingBuilder/
+│       ├── steps/              # Wizard step components
+│       │   ├── StepTipoNegocio.tsx
+│       │   ├── StepEstiloVisual.tsx
+│       │   ├── StepLayout.tsx
+│       │   └── StepImagens.tsx
+│       ├── LandingBuilder.tsx   # Main wizard component
+│       ├── LandingBuilderContext.tsx
+│       ├── LandingPreview.tsx   # Preview renderer
+│       ├── LandingDemo.tsx     # Demo/home page
+│       └── types.ts             # TypeScript definitions
+├── App.tsx
+├── main.tsx
+└── index.css
+```
+
+## Tech Stack
+
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **Material-UI (MUI)** - Component library
+- **ESLint** - Code linting
+
+## Customization
+
+### Adding New Business Types
+
+Edit `src/components/LandingBuilder/types.ts`:
+
+```typescript
+export const TIPOS_NEGOCIO: { key: TipoNegocio; label: string; icon: string; descricao: string }[] = [
+  // Add new type here
+];
+```
+
+### Adding New Colors
+
+Edit the colors in `StepEstiloVisual.tsx`:
+
+```typescript
+const cores = [
+  { key: 'blue', cor: '#1976d2', nome: 'Blue' },
+  // Add new color here
+];
+```
+
+### Modifying Default Content
+
+The preview generates default content based on business type. Customize `getDefaultContent()` in `LandingPreview.tsx`.
+
+## License
+
+MIT License - feel free to use this project for any purpose.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
